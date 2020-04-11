@@ -1,0 +1,42 @@
+<div class="container justify-content-center top">
+  <div class="col-lg-auto">
+    <div class="row">
+      <div class="col-md-auto col-lg-11">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="title">Login</h5>
+          </div>
+          <hr class="my-4">
+          <div class="card-body">
+            <form [formGroup]="formLogin">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Login</label>
+                    <input type="text" class="form-control" placeholder="login"
+                           required formControlName="login" #userNameInput>
+                    <app-vmessege *ngIf="formLogin.get('login').errors?.required"
+                                  text="Nome obrigatório"></app-vmessege>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" class="form-control" placeholder="senha"
+                           required formControlName="password">
+                    <app-vmessege *ngIf="formLogin.get('password').errors?.required"
+                                  text=" Senha obrigatório"></app-vmessege>
+                  </div>
+                </div>
+              </div>
+              <div class=" d-flex justify-content-end">
+                <button class="btn btn-primary" [disabled]="formLogin.invalid" (click)="login()">Entrar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

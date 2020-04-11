@@ -1,0 +1,37 @@
+<app-topo></app-topo>
+<div class="container justify-content-center mtop mb-lg-5" >
+  <div class="col-lg-auto">
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-auto col-lg-11">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="title">Consulta de Pessoa</h5>
+            </div>
+            <div class="card-body" >
+              <table class="table">
+                <thead class="mt-lg-2">
+                <tr>
+                  <th scope="col">TIPO TELEFONE</th>
+                  <th scope="col">DDD</th>
+                  <th scope="col">NUMERO</th>
+                  <th scope="col">AÇÕES</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let telefone of telefones">
+                  <td>{{telefone.phone.phoneType}}</td>
+                  <td>{{telefone.phone.codArea}}</td>
+                  <td>{{telefone.phone.number}}</td>
+                  <td> <img src="../../../assets/imagens/edit.png" class="imgTm" (click)="editar(telefone.documentNumber)"></td>
+                  <td><img src="../../../assets/imagens/delete.png" class="imgTm" (click)="remover(telefone.documentNumber)"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

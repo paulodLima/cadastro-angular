@@ -1,0 +1,91 @@
+<app-topo></app-topo>
+<div class="container justify-content-center top">
+  <div class="col-lg-auto">
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-auto col-lg-11">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="title">Cadastro de Operador</h5>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="mensagem">
+              Operador cadastrado com sucesso!
+            </div>
+            <div class="card-body">
+              <form [formGroup]="formulario">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nome</label>
+                      <input type="text" class="form-control" placeholder="Nome"
+                             [value]="name" required formControlName="name">
+                      <app-vmessege *ngIf="formulario.get('name').errors?.pattern"
+                                    text="Tamanho inválido"></app-vmessege>
+
+                      <app-vmessege *ngIf="formulario.get('name').errors?.required"
+                                    text="Nome obrigatório"></app-vmessege>
+                    </div>
+                  </div>
+                  <div class="col-md-3" *ngIf="login">
+                    <div class="form-group">
+                      <label>Login</label>
+                      <input type="text" class="form-control" placeholder="Login" [value]="login" required
+                             formControlName="login">
+                      <app-vmessege *ngIf="formulario.get('login').errors?.required"
+                                    text="Login obrigatória"></app-vmessege>
+                      <app-vmessege *ngIf="formulario.get('login').errors?.pattern"
+                                    text="Tamanho inválido"></app-vmessege>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Senha</label>
+                      <input type="password" class="form-control" placeholder="Senha"
+                             [value]="password" required formControlName="password">
+                      <app-vmessege *ngIf="formulario.get('password').errors?.required"
+                                    text=" Senha obrigatória"></app-vmessege>
+                      <app-vmessege *ngIf="formulario.get('password').errors?.pattern"
+                                    text="Tamanho inválido"></app-vmessege>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Perfil</label>
+                      <select class="form-control" required formControlName="perfil" [value]="perfil">
+                        <option selected>Selecione</option>
+                        <option>GERENTE</option>
+                        <option>ANALISTA</option>
+                      </select>
+                      <app-vmessege *ngIf="formulario.get('perfil').errors?.required"
+                                    text=" Perfil obrigatória"></app-vmessege>
+                  </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Administrador</label>
+                      <input type="checkbox" class="form-control" required
+                             formControlName="admin" [value]="admin">
+                      <app-vmessege *ngIf="formulario.get('admin').errors?.required"
+                                    text="Administrador obrigatório"></app-vmessege>
+                      <app-vmessege *ngIf="formulario.get('admin').errors?.pattern"
+                                    text="Tamanho inválido"></app-vmessege>
+                    </div>
+                  </div>
+                </div>
+                <div class=" d-flex justify-content-end">
+                  <button class="btn btn-primary text-center" (click)="cadastrar()">
+                    Cadastrar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;" >
+    <!-- Navbar content -->
+
+    <li class="breadcrumb-item"><a  [routerLink]="['/home']">Cadastro de Pessoa</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a  [routerLink]="['/lista_de_pessoas']">Lista de Pessoas</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a  [routerLink]="['/cadastrar_telefone']">Cadastrar telefone</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a  [routerLink]="['/listar_telefone']">Listar telefone</a></li>
+    <li *ngIf="admin" class="breadcrumb-item active" aria-current="page"><a  [routerLink]="['/cadastrar_operadores']">Cadastrar operadores</a></li>
+    <li *ngIf="admin" class="breadcrumb-item active" aria-current="page"><a  [routerLink]="['/lista_de_operadores']">Lista de operadores</a></li>
+  </nav>
+
+  <a class="ml-lg-5">Bem vindo, {{nome}}</a>
+    <a href="#" class="float-right mr-5 mb-5">Sair</a>
+</nav>
+

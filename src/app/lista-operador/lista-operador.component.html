@@ -1,0 +1,37 @@
+<app-topo></app-topo>
+<div class="container justify-content-center mtop mb-lg-5" >
+  <div class="col-lg-12 mrl">
+    <div class="main-content">
+        <div class="col-md-auto col-lg-12">
+          <div class="card table-responsive">
+            <div class="card-header">
+              <h5 class="title">Consulta de Pessoa</h5>
+            </div>
+              <table class="table">
+                <thead class="mt-lg-2">
+                <tr>
+                  <th scope="col">NOME</th>
+                  <th scope="col">LOGIN</th>
+                  <th scope="col">PASSWORD</th>
+                  <th scope="col">PERFIL</th>
+                  <th scope="col">ADMINISTRADOR</th>
+                  <th scope="col">AÇÕES</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let operador of operador">
+                  <td>{{operador.name}}</td>
+                  <td>{{operador.login}}</td>
+                  <td nowrap="true">{{operador.password}}</td>
+                  <td>{{operador.perfil}}</td>
+                  <td>{{operador.admin}}</td>
+                  <td> <img src="../../../assets/imagens/edit.png" class="imgTm" (click)="editar(operador.login)"></td>
+                  <td><img src="../../../assets/imagens/delete.png" class="imgTm" (click)="remover(operador.login)"></td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

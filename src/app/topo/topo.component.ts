@@ -11,7 +11,7 @@ export class TopoComponent implements OnInit {
   mostrarMenu = false;
   nome = '';
   admin = false;
-
+  public operador: any;
   constructor(private auth: AuthService) {
   }
 
@@ -24,7 +24,9 @@ export class TopoComponent implements OnInit {
 
     this.auth.consultarOperador(this.nome).subscribe(
       pessoa => {
-        this.admin = pessoa.admin;
+        console.log(pessoa);
+        this.operador = pessoa;
+        this.admin = this.operador.admin;
       });
 
   }

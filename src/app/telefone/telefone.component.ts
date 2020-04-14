@@ -15,10 +15,13 @@ export class TelefoneComponent implements OnInit {
   public codArea = '';
   public phoneType = '';
   public phoneMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
-  formulario: FormGroup;
+  public formulario: FormGroup;
   public addMaisTelefone = [];
-  numero = 0;
+  public numero = 0;
   public telefones: Array<any>;
+  public delete = '../../../assets/imagens/delete.png';
+  public edit = '../../../assets/imagens/mais.png';
+
   constructor(private formBuilder: FormBuilder, private telefoneService: TelefoneService,
               private authService: AuthService) {
   }
@@ -36,11 +39,15 @@ export class TelefoneComponent implements OnInit {
   }
 
   listarTelefones() {
-    this.telefoneService.listarPessoas().subscribe(telefones => {
+    this.telefoneService.listarTelefone().subscribe(telefones => {
       this.telefones = telefones;
     }, erro => {
       console.log('Erro ao listar contatos', erro);
     });
+  }
+
+  cadastrar() {
+
   }
 
   tipoTelefone() {

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   public contatosList: Array<any>;
-  addTelefone = false;
+  addTelefone = true;
   public addMaisTelefone = [];
   dataDiaVerife = false;
   formulario: FormGroup;
@@ -35,12 +35,13 @@ export class HomeComponent implements OnInit {
   public phoneType = '';
   public phoneMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
   public tipoPessoa;
+  public delete = '../../../assets/imagens/delete.png';
+  public mais = '../../../assets/imagens/mais.png';
 
 
   // controle de estado inicial
 
-  numero = 0;
-  private mask1: string;
+  numero = 1;
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
       typePerson: [null, Validators.required],
       phone: this.formBuilder.group({
         number: [null, [Validators.required, Validators.pattern(/^[\s\S]{8,10}$/)]],
-        codArea: [null, [Validators.required, Validators.pattern(/^[\s\S]{3}$/)]],
+        codArea: [null, [Validators.required, Validators.pattern(/^[\s\S]{2,3}$/)]],
         phoneType: [null, Validators.required]
       })
     });
@@ -79,35 +80,47 @@ export class HomeComponent implements OnInit {
   }
 
   cadastrar() {
-    this.contatosSevice.listarPessoas().subscribe(contatos => {
-      this.contatosList = contatos;
-      for (let i = 0; i < this.contatosList.length; i++) {
-        if (this.contatosList[i].documentNumber.indexOf(this.formulario.value.documentNumber) === 0) {
-          this.contatosSevice.atualizarPessoa(this.formulario.value).subscribe(
-            pessoa => {
-              this.contatosSevice.listarPessoas();
-              this.formulario.reset();
-              this.contatosSevice.listarPessoas();
-            }, erro => {
-              alert('Erro ao atualizar pessoa');
-              console.log('Erro ao Atualizar pessoa', erro);
-            });
-          break;
-        } else {
-          if (this.contatosList[i].documentNumber.indexOf(this.formulario.value.documentNumber) === -1) {
-            this.contatosSevice.cadastrarPessoa(this.formulario.value).subscribe(pessoa => {
-              this.formulario.reset();
-            }, erro => {
-              alert('Erro ao cadastrar pessoa');
-              console.log('Erro ao cadastrar pessoa', erro);
-            });
+
+    if (this.formulario.valid) {
+
+      this.contatosSevice.listarPessoas().subscribe(contatos => {
+
+        this.contatosList = contatos;
+
+        for (let i = 0; i < this.contatosList.length; i++) {
+          if (this.contatosList[i].documentNumber.indexOf(this.formulario.value.documentNumber) === 0) {
+            this.contatosSevice.atualizarPessoa(this.formulario.value).subscribe(
+              () => {
+
+                this.formulario.reset();
+                this.contatosSevice.listarPessoas();
+
+              }, erro => {
+                alert('Erro ao atualizar pessoa');
+                console.log('Erro ao Atualizar pessoa', erro);
+              });
             break;
+          } else {
+
+            if (this.contatosList[i].documentNumber.indexOf(this.formulario.value.documentNumber) === -1) {
+
+              this.contatosSevice.cadastrarPessoa(this.formulario.value).subscribe(() => {
+
+                this.formulario.reset();
+              }, erro => {
+
+                alert('Erro ao cadastrar pessoa');
+                console.log('Erro ao cadastrar pessoa', erro);
+
+              });
+              break;
+            }
           }
         }
-      }
-    }, erro => {
-      console.log('Erro ao listar contatos', erro);
-    });
+      }, erro => {
+        console.log('Erro ao listar contatos', erro);
+      });
+    }
   }
 
   adicionarTelefone() {

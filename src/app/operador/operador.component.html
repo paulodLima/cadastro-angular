@@ -12,29 +12,29 @@
               Operador cadastrado com sucesso!
             </div>
             <div class="card-body">
-              <form [formGroup]="formulario">
+              <form #form = 'ngForm' [formGroup]="formulario">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Nome</label>
                       <input type="text" class="form-control" placeholder="Nome"
                              [value]="name" required formControlName="name">
-                      <app-vmessege *ngIf="formulario.get('name').errors?.pattern"
+                      <app-vmessege *ngIf="formulario.get('name').errors?.pattern && form.submitted"
                                     text="Tamanho inválido"></app-vmessege>
 
-                      <app-vmessege *ngIf="formulario.get('name').errors?.required"
+                      <app-vmessege *ngIf="formulario.get('name').errors?.required && form.submitted"
                                     text="Nome obrigatório"></app-vmessege>
                     </div>
                   </div>
                   <div class="col-md-3" *ngIf="login">
                     <div class="form-group">
                       <label>Login</label>
-                      <input type="text" class="form-control" placeholder="Login" [value]="login" required
+                      <input type="text" class="form-control" placeholder="Login" [value]="login"
                              formControlName="login">
-                      <app-vmessege *ngIf="formulario.get('login').errors?.required"
+                      <app-vmessege *ngIf="formulario.get('login').errors?.required && form.submitted"
                                     text="Login obrigatória"></app-vmessege>
-                      <app-vmessege *ngIf="formulario.get('login').errors?.pattern"
-                                    text="Tamanho inválido"></app-vmessege>
+                      <app-vmessege *ngIf="formulario.get('login').errors?.pattern && form.submitted"
+                                    text="Login inválido"></app-vmessege>
                     </div>
                   </div>
                 </div>
@@ -44,9 +44,9 @@
                       <label>Senha</label>
                       <input type="password" class="form-control" placeholder="Senha"
                              [value]="password" required formControlName="password">
-                      <app-vmessege *ngIf="formulario.get('password').errors?.required"
+                      <app-vmessege *ngIf="formulario.get('password').errors?.required && form.submitted"
                                     text=" Senha obrigatória"></app-vmessege>
-                      <app-vmessege *ngIf="formulario.get('password').errors?.pattern"
+                      <app-vmessege *ngIf="formulario.get('password').errors?.pattern && form.submitted"
                                     text="Tamanho inválido"></app-vmessege>
                     </div>
                   </div>
@@ -58,7 +58,7 @@
                         <option>GERENTE</option>
                         <option>ANALISTA</option>
                       </select>
-                      <app-vmessege *ngIf="formulario.get('perfil').errors?.required"
+                      <app-vmessege *ngIf="formulario.get('perfil').errors?.required && form.submitted"
                                     text=" Perfil obrigatória"></app-vmessege>
                   </div>
                   </div>
@@ -68,9 +68,9 @@
                       <label>Administrador</label>
                       <input type="checkbox" class="form-control" required
                              formControlName="admin" [value]="admin">
-                      <app-vmessege *ngIf="formulario.get('admin').errors?.required"
+                      <app-vmessege *ngIf="formulario.get('admin').errors?.required && form.submitted"
                                     text="Administrador obrigatório"></app-vmessege>
-                      <app-vmessege *ngIf="formulario.get('admin').errors?.pattern"
+                      <app-vmessege *ngIf="formulario.get('admin').errors?.pattern && form.submitted"
                                     text="Tamanho inválido"></app-vmessege>
                     </div>
                   </div>

@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Person} from '../shared/person_model';
+import {take} from 'rxjs/operators';
+import {Telefone} from '../shared/telefone';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,22 @@ export class TelefoneService {
   constructor(private http: HttpClient) {
   }
 
-  listarPessoas(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.URL + 'persons');
+  listarTelefone(): Observable<Telefone[]> {
+    return this.http.get<Telefone[]>(this.URL + 'persons');
   }
+
+
+  cadastrarTelefone(telefone: Telefone): Observable<any> {
+    return this.http.post(this.URL + 'admin/operator', telefone);
+  }
+
+  consultarTelefone(documentNumber: string) {
+    console.log('documento', documentNumber);
+    return this.http.get(`${this.URL}gestor/operator/${documentNumber}`).pipe(take(1));
+  }
+
+  atualizarTelefone(telefone) {
+    return this.http.put(`${this.URL}admin/operator/${telefone.documentNumber}`, telefone).pipe(take(1));
+  }
+
 }

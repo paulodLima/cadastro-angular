@@ -22,21 +22,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.formBuilder.group({
-      login: [null, [Validators.required,/* Validators.pattern(/^[a-z0-9 _-] {8,15}$/),*/ Validators.maxLength(15)]],
-      password: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]
+      login: [null, [Validators.required, Validators.pattern(/^-?(0|[a-z]{2,15}\d*)?$/)]],
+      password: [null, [Validators.required, Validators.pattern(/^-?(0|[a-z0-9]{8,15}\d*)?$/)]]
     });
   }
 
   public login() {
-    const userName = this.formLogin.get('login').value;
-    const password = this.formLogin.get('password').value;
 
-    this.authService.authenticate(userName, password)
-      .subscribe(() => {
-      }, error => {
-        this.formLogin.reset();
-        this.userNameInput.nativeElement.focus();
-        alert('Usuario ou senha incorreta!');
-      });
+    if (this.formLogin.valid) {
+
+      const userName = this.formLogin.get('login').value;
+      const password = this.formLogin.get('password').value;
+
+      this.authService.authenticate(userName, password);
+
+    }
   }
 }

@@ -8,15 +8,17 @@
           </div>
           <hr class="my-4">
           <div class="card-body">
-            <form [formGroup]="formLogin">
+            <form #form = 'ngForm' [formGroup]="formLogin">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Login</label>
                     <input type="text" class="form-control" placeholder="login"
                            required formControlName="login" #userNameInput>
-                    <app-vmessege *ngIf="formLogin.get('login').errors?.required"
-                                  text="Nome obrigatório"></app-vmessege>
+                    <app-vmessege *ngIf="formLogin.get('login').errors?.required  && form.submitted"
+                                  text="Login incorreto"></app-vmessege>
+                    <app-vmessege *ngIf="formLogin.get('login').errors?.pattern  && form.submitted"
+                                  text="Login incorreto"></app-vmessege>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -24,13 +26,15 @@
                     <label>Senha</label>
                     <input type="password" class="form-control" placeholder="senha"
                            required formControlName="password">
-                    <app-vmessege *ngIf="formLogin.get('password').errors?.required"
+                    <app-vmessege *ngIf="formLogin.get('password').errors?.required  && form.submitted"
                                   text=" Senha obrigatório"></app-vmessege>
+                    <app-vmessege *ngIf="formLogin.get('password').errors?.pattern  && form.submitted"
+                                  text="Tamanho da senha é de 8 a 15 caracteres"></app-vmessege>
                   </div>
                 </div>
               </div>
               <div class=" d-flex justify-content-end">
-                <button class="btn btn-primary" [disabled]="formLogin.invalid" (click)="login()">Entrar
+                <button class="btn btn-primary" (click)="login()">Entrar
                 </button>
               </div>
             </form>

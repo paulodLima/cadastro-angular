@@ -10,6 +10,8 @@ import {TelefoneService} from '../service/telefone.service';
 export class ListaTelefoneComponent implements OnInit {
 
   public telefones: Array<any>;
+  public edit = '../../../assets/imagens/edit.png';
+  public delete = '../../../assets/imagens/delete.png';
 
   constructor(private router: Router, private telefoneService: TelefoneService) { }
 
@@ -19,7 +21,7 @@ export class ListaTelefoneComponent implements OnInit {
   }
 
     listarTelefones() {
-      this.telefoneService.listarPessoas().subscribe(telefones => {
+      this.telefoneService.listarTelefone().subscribe(telefones => {
         this.telefones = telefones;
       }, erro => {
         console.log('Erro ao listar contatos', erro);

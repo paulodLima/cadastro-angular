@@ -10,5 +10,7 @@ Após as dependências serem instaladas basta dentro da pasta do projeto rodar o
 
 ## Observação
 
-Para a aplicação consumir os serviços a aplicação 'cadastro-de-pessoa-spring' deve estar rodando.
+Para a aplicação consumir os serviços a aplicação 'cadastro-spring' deve estar rodando.
+Algumas funcionalides que estavam nos requisitos não foram antendidas, acabei perdendo muito tempo desenvolvento em Angular Js e quando me deparei com algumas coisas e vi que não ia da tempo tentei no angular 2+, só que o tempo não deu devido a falta de estrategia.
+Espero que gostem do que foi realizado.
 
